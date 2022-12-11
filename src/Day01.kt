@@ -1,15 +1,32 @@
 fun main() {
+    fun countBags(input: List<String>): List<Int> = sequence {
+        var total = 0
+        input.forEach {
+            if (it.isBlank()) {
+                yield(total)
+                total = 0
+            } else {
+                total += it.toInt()
+            }
+        }
+        yield(total)
+    }.toList()
+
     fun part1(input: List<String>): Int {
-        return input.size
+        val bags = countBags(input)
+        return bags.max()
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val bags = countBags(input)
+        return bags.sortedDescending().take(3).sum()
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    val testInput = readInput("Day01_Test")
+    val test1 = part1(testInput)
+    check(test1 == 24000)
+    val test2 = part2(testInput)
+    check(test2 == 45000)
 
     val input = readInput("Day01")
     part1(input).println()
