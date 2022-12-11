@@ -1,4 +1,6 @@
 fun main() {
+    val day = "01"
+
     fun countBags(input: List<String>): List<Int> = sequence {
         var total = 0
         input.forEach {
@@ -22,13 +24,12 @@ fun main() {
         return bags.sortedDescending().take(3).sum()
     }
 
-    val testInput = readInput("Day01_Test")
+    val testInput = readInput("Day${day}_Test")
+    val input = readInput("Day${day}")
     val test1 = part1(testInput)
     check(test1 == 24000)
+    println("Part 1 => ${part1(input)}")
     val test2 = part2(testInput)
     check(test2 == 45000)
-
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    println("Part 2 => ${part2(input)}")
 }
